@@ -1,0 +1,16 @@
+{
+  "name": "mirage-imag",
+  "version": "1.0.0",
+  "description": "Utility tool to convert an image using various compressions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "imagemin": "^7.0.1",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-webp": "^6.0.0"
+  }
+}
