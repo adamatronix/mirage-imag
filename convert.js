@@ -4,6 +4,7 @@ const imageminWebp = require('imagemin-webp');
 const fs = require("fs");
 const argv = require('minimist')(process.argv.slice(2));
 const asciichart = require ('asciichart');
+const Table = require('cli-table');
 
 
 const quality = argv.quality || 75;
@@ -63,7 +64,21 @@ convertToMozJpeg()
   imageset2 = files;
   let compareData = outputComparisons(imageset1, imageset2);
   let chart = [];
-  for (var i = 0; i < compareData.length; i++)
+  let mean = 0;
+  for (var i = 0; i < compareData.length; i++) {
+    mean += compareData[i].difference;
     chart.push(compareData[i].difference)
+  }
+    
     console.log (asciichart.plot (chart, { height: 50 }))
+
+  var table = new Table({
+      head: ['Stat', 'Value'],
+  });
+  
+  // table is an Array, so you can `push`, `unshift`, `splice` and friends
+  table.push(['Images Tested', compareData.length]);
+  table.push(['Mean', mean / compareData.length + '%']);
+
+  console.log(table.toString());
 })
